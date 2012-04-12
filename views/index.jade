@@ -1,15 +1,82 @@
 h1= title
 div.metro-pivot
   div.pivot-item
-    h3 page one
+    h3 registrations
+    #container
+      div.item
+        p.stat 15
+        p.subheading PayPower
+      div.item
+        p.stat 22
+        p.subheading Giant Eagle
+      div.item
+        p.stat 34
+        p.subheading Employee
+      div.item
+        p.stat 55
+        p.subheading Blackhawk
+      div.item
+        span#holderChart.graph
+      div.item
+        p.stat 55
+        p.subheading Blackhawk
+      div.item
+        p.stat 55
+        p.subheading Blackhawk
+    
+  div.pivot-item
+    h3 dailys
+    table#one-column-emphasis(summary='2007 Major IT Companies Profit')
+      colgroup 
+        col
+        col
+        col
+        col
+      thead
+          tr
+            th(scope='col') Company
+            th(scope='col') Q1
+            th(scope='col') Q2
+            th(scope='col') Q3
+            th(scope='col') Q4
+      tfoot 
+          tr
+            td
+            td
+            td
+            td 
+            td   
+      tbody
+          tr
+            td.row-header Microsoft
+            td 20.3
+            td 30.5
+            td 23.5
+            td 40.3
+          tr
+            td.row-header Google
+            td 50.2
+            td 40.63
+            td 45.23
+            td 39.3
+          tr
+            td.row-header Apple
+            td 25.4
+            td 30.2
+            td 33.3
+            td 36.7
+          tr
+            td.row-header IBM
+            td 20.4
+            td 15.6
+            td 22.3
+            td 29.3
+
+  div.pivot-item
+    h3 announcements
     p page one content
-  div.pivot-item
-    h3 page two
-    p page two content
-  div.pivot-item
-    h3 page three
-    p page three content
   script
+
     var defaults = {
       animationDuration: 350,
       headerOpacity: 0.25,
@@ -26,3 +93,39 @@ div.metro-pivot
     $(function () {
       $("div.metro-pivot").metroPivot(defaults);
     });
+  script
+      $('#container').isotope({
+              itemSelector : '.item',
+              layoutMode: 'fitColumns'
+              // masonryHorizontal: {columnWidth:10},
+              // resizable:true,
+              // cellsByColumn: {
+              //   columnWidth: 200,
+              //   rowHeight: 100
+              // }
+              // cellsByRow: {
+              //   columnWidth: 10,
+              //   rowHeight: 100
+              // }
+            });
+  script
+    window.onload = function () {
+                var r = Raphael("holderChart", 400, 330),
+                    data1 = [[55, 20, 13, 32, 5, 1, 2, 10], [10, 2, 1, 5, 32, 13, 20, 55], [12, 20, 30]],
+                    // data2 = [[55, 20, 13, 32, 5, 1, 2, 10], [10, 2, 1, 5, 32, 13, 20, 55], [12, 20, 30]],
+                    // data3 = [[55, 20, 13, 32, 5, 1, 2, 10], [10, 2, 1, 5, 32, 13, 20, 55], [12, 20, 30]],
+                    txtattr = { font: "12px sans-serif" };
+                
+                //r.text(160, 10, "Single Series Chart").attr(txtattr);
+                // r.text(480, 10, "Multiline Series Chart").attr(txtattr);
+                // r.text(160, 250, "Multiple Series Stacked Chart").attr(txtattr);
+                // r.text(480, 250, 'Multiline Series Stacked Vertical Chart. Type "round"').attr(txtattr);
+                
+                r.barchart(10, 10, 350, 220, [[55, 20, 13, 32, 5, 1, 2, 10]], 0, {type: "sharp"});
+                // r.barchart(330, 10, 300, 220, data1);
+                // r.barchart(10, 250, 300, 220, data2, {stacked: true});
+                // r.barchart(330, 250, 300, 220, data3, {stacked: true, type: "round"});
+                $('#container').isotope( 'reLayout', null )
+            };
+
+    

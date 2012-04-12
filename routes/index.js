@@ -4,5 +4,5 @@
  */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Metro.css' })
+  res.render('index', { title: 'bhn metrics' })
 };
