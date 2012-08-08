@@ -92,7 +92,7 @@
             },
             setCurrentHeader: function(header){
                 var pivot = this;
-
+                $('#container').isotope( 'reLayout', null );
                 // make current header a normal one
                 this.headers.children(".header.current").removeClass("current").fadeTo(0, this.headerOpacity);
 
@@ -117,6 +117,7 @@
                 }
             },
             setCurrentItem: function(item, index){
+                $('#container').isotope( 'reLayout', null );
                 var pivot = this;
                 
                 // hide current item immediately
@@ -133,16 +134,21 @@
                 }, 200);                
             },
             currentItemChanged: function(index) {
+                
+                $('#container').isotope( 'reLayout', null );
                 this.animating = false;
                 if(this.selectedItemChanged != undefined)
                 {
                     this.selectedItemChanged(index);
                 }
+
             },
             pivotHeader_Click : function (me) {
+                $('.items').hide();
+                $('#container').isotope( 'reLayout', null );
                 // ignore if already current
                 if (me.is(".current")) return;
-
+                
                 // ignore if still animating
                 if (this.animating) return;
                 this.animating = true;
@@ -154,7 +160,8 @@
                 // find and set current item
                 var item = this.items.children(".pivotItem:nth(" + index + ")");
                 this.setCurrentItem(item, index);
-                // $('#container').isotope( 'reLayout', null );
+                $('.items').show();
+                
             },
         });
 

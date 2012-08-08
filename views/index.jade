@@ -128,4 +128,9 @@ div.metro-pivot
                 $('#container').isotope( 'reLayout', null );
             };
 
+script
+  $(function(){
+      setInterval(function(){$("div.metro-pivot").data("controller").goToNext();}, 5000)
+  });
+
     
